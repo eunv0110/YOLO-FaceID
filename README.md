@@ -1,3 +1,6 @@
+<img width="470" alt="스크린샷 2025-03-04 오전 12 38 01" src="https://github.com/user-attachments/assets/d1633761-a439-4779-be01-0f4c6775356d" />
+<img width="417" alt="스크린샷 2025-03-04 오전 12 38 31" src="https://github.com/user-attachments/assets/cfb30982-9cfa-464a-9580-17ae8a6b476a" />
+
 # 📷 카메라 기반 얼굴 인식 프로젝트
 
 <div align="center">
@@ -68,9 +71,8 @@
     <th align="center">데이터 구성</th>
     <td>
       <ul>
-        <li>Keras 모델용 데이터: 최소 2,500장의 이미지</li>
-        <li>YOLO-cls 모델용 데이터: 최소 2,500장의 이미지</li>
         <li>YOLO 객체 탐지 모델용 데이터: 최소 2,500장의 이미지와 라벨</li>
+        <li>YOLO-cls 모델용 데이터: 최소 2,500장의 이미지</li>
       </ul>
     </td>
   </tr>
@@ -88,65 +90,26 @@
 
 ### 1. 사내 출입 1차 검증: 본인/타인 얼굴 구분 (UltraLytics YOLO)
 - **목적**: 출입자가 등록된 사원인지 아닌지 빠르게 구분
-- **선택 모델**: `yolo11s imgsz 160 p10` (5가지 모델 중 Best 성능)
+- **선택 모델**: `YOLO11s` (5가지 모델 중 Best 성능)
 - **적용 상황**: 출입구에서 1차 검증으로 활용
 - **특징**: 높은 정확도로 빠르게 본인/타인 구분 가능
 
-### 2. 사내 출입 2차 검증: 조원별 얼굴 식별 (UltraLytics YOLO-cls)
-- **목적**: 1차에서 확인된 인가자가 누구인지 정확히 식별
-- **선택 모델**: `yolo 11n-cls` (시간 제약으로 인해 단일 모델만 테스트)
+### 2. 사내 출입 2차 검증: 개인 식별 (UltraLytics YOLO-cls)
+- **목적**: 1차에서 확인된 인가자의 정확한 신원 확인
+- **선택 모델**: `YOLO11n-cls` 
 - **적용 상황**: 개인별 권한 부여 및 출입 기록을 위한 2차 검증
-- **특징**: 조원 6명의 얼굴을 각각의 클래스로 높은 정확도 분류
+- **특징**: 개인별 얼굴을 높은 정확도로 분류
 
 ### 3. 두 모델의 사용 목적
-- **UltraLytics YOLO**: 본인인지 아닌지 여부를 구분할 때 사용
-- **UltraLytics YOLO-cls**: 여러 명의 얼굴을 각각 누구인지 판별할 때 사용
+- **UltraLytics YOLO**: 얼굴 검출 및 본인/타인 구분 수행
+- **UltraLytics YOLO-cls**: 개인 신원 정확히 식별
 - **통합 활용**: 두 모델을 연계하여 단계적으로 출입 권한 확인 및 개인 식별
-
-
 
 <br>
 
 ## 📱 구현 모델
 
-### 1. FaceNet 기반 얼굴 인식 모델
-
-<table>
-  <tr>
-    <th width="20%">모델 구조</th>
-    <td>
-      <ul>
-        <li>InceptionResNetV1 아키텍처 사용</li>
-        <li>입력 이미지 크기: 160x160</li>
-        <li>출력: 128차원의 얼굴 임베딩 벡터</li>
-        <li>이진 분류를 위한 Sigmoid 레이어 추가</li>
-      </ul>
-    </td>
-  </tr>
-  <tr>
-    <th>학습 방법</th>
-    <td>
-      <ul>
-        <li>사전 학습된 FaceNet 가중치 적용</li>
-        <li>마지막 레이어에 전이학습 적용</li>
-        <li>Adam 옵티마이저 사용</li>
-        <li>Binary Cross-Entropy 손실 함수</li>
-      </ul>
-    </td>
-  </tr>
-  <tr>
-    <th>주요 기능</th>
-    <td>
-      <ul>
-        <li>얼굴 특징 추출 및 임베딩 생성</li>
-        <li>사용자/비사용자 얼굴 구분</li>
-        <li>실시간 웹캠 인식 가능</li>
-      </ul>
-    </td>
-  </tr>
-</table>
-
-### 2. YOLO-cls 분류 모델
+### 1. YOLO-cls 분류 모델
 
 <table>
   <tr>
@@ -174,22 +137,22 @@
     <th>주요 기능</th>
     <td>
       <ul>
-        <li>얼굴 이미지 다중 클래스 분류</li>
-        <li>사용자/비사용자 클래스 구분</li>
+        <li>얼굴 이미지 분류</li>
+        <li>개인 신원 식별</li>
         <li>높은 정확도의 얼굴 인식</li>
       </ul>
     </td>
   </tr>
 </table>
 
-### 3. YOLO 객체 탐지 모델
+### 2. YOLO 객체 탐지 모델
 
 <table>
   <tr>
     <th width="20%">모델 구조</th>
     <td>
       <ul>
-        <li>YOLOv8n 객체 탐지 모델</li>
+        <li>YOLOv8s 객체 탐지 모델</li>
         <li>실시간 객체 탐지에 최적화</li>
         <li>얼굴 위치 및 클래스 동시 인식</li>
       </ul>
@@ -232,42 +195,8 @@
       <th>단점</th>
     </tr>
     <tr>
-      <td>FaceNet</td>
-      <td>97.5%</td>
-      <td>중간</td>
-      <td>
-        <ul>
-          <li>고정밀 얼굴 특징 추출</li>
-          <li>적은 데이터로도 학습 가능</li>
-        </ul>
-      </td>
-      <td>
-        <ul>
-          <li>전처리 과정 필요</li>
-          <li>계산 복잡도 높음</li>
-        </ul>
-      </td>
-    </tr>
-    <tr>
-      <td>YOLO-cls</td>
-      <td>96%</td>
-      <td>빠름</td>
-      <td>
-        <ul>
-          <li>빠른 추론 속도</li>
-          <li>간단한 구현</li>
-        </ul>
-      </td>
-      <td>
-        <ul>
-          <li>얼굴 검출 별도 필요</li>
-          <li>다수 인물 동시 처리 어려움</li>
-        </ul>
-      </td>
-    </tr>
-    <tr>
-      <td>YOLO 객체 탐지</td>
-      <td>94%</td>
+      <td>YOLO 객체 탐지<br>(본인/타인 구분)</td>
+      <td>95% 이상</td>
       <td>매우 빠름</td>
       <td>
         <ul>
@@ -282,18 +211,29 @@
         </ul>
       </td>
     </tr>
+    <tr>
+      <td>YOLO-cls<br>(개인 식별)</td>
+      <td>100%</td>
+      <td>빠름</td>
+      <td>
+        <ul>
+          <li>빠른 추론 속도</li>
+          <li>간단한 구현</li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li>얼굴 검출 별도 필요</li>
+          <li>다수 인물 동시 처리 어려움</li>
+        </ul>
+      </td>
+    </tr>
   </table>
 </div>
 
 <br>
 
 ## 🧪 성능 개선 실험
-
-### FaceNet 모델 최적화
-- 드롭아웃 비율 조정 (0.1, 0.3, 0.5)
-- 학습률 최적화 (0.001, 0.0005, 0.0001)
-- 배치 크기 실험 (16, 32, 64)
-- 데이터 증강 기법 적용
 
 ### YOLO-cls 모델 최적화
 - 이미지 크기 조정 (160, 224, 320)
@@ -314,7 +254,7 @@
 ### 1. 본인/타인 얼굴 탐지 모델 혼동 행렬
 
 <div align="center">
-<img width="474" alt="스크린샷 2025-03-04 오전 1 16 51" src="https://github.com/user-attachments/assets/a22ad394-3754-4dad-a64f-40935bb6a028" />
+<img width="474" alt="스크린샷 2025-03-04 오전 1 16 51" src="https://github.com/user-attachments/assets/a22ad394-3754-4dad-a64f-40935bb6a028" />
 </div>
 
 - **혼동 행렬 분석**:
@@ -326,7 +266,7 @@
 ### 2. UltraLytics YOLO 학습 과정 성능 그래프
 
 <div align="center">
-<img width="644" alt="스크린샷 2025-03-04 오전 1 17 12" src="https://github.com/user-attachments/assets/f462475f-29c1-4d51-9174-68a32ee5c667" />
+<img width="644" alt="스크린샷 2025-03-04 오전 1 17 12" src="https://github.com/user-attachments/assets/f462475f-29c1-4d51-9174-68a32ee5c667" />
 </div>
 
 - **학습 과정 분석**:
@@ -354,14 +294,14 @@
     <tr>
       <th width="25%">평가 지표</th>
       <th width="25%">본인/타인 구분 모델<br>(YOLO)</th>
-      <th width="25%">조원별 얼굴 식별 모델<br>(YOLO-cls)</th>
+      <th width="25%">개인 식별 모델<br>(YOLO-cls)</th>
       <th width="25%">통합 사용 시</th>
     </tr>
     <tr>
       <td>정확도</td>
       <td>95% 이상</td>
-      <td>80-95%</td>
-      <td>90% 이상</td>
+      <td>100%</td>
+      <td>95% 이상</td>
     </tr>
     <tr>
       <td>처리 속도</td>
@@ -372,8 +312,8 @@
     <tr>
       <td>다중 얼굴 처리</td>
       <td>우수</td>
-      <td>매우 우수</td>
-      <td>매우 우수</td>
+      <td>제한적</td>
+      <td>우수</td>
     </tr>
     <tr>
       <td>적용 상황</td>
@@ -387,15 +327,25 @@
 ## 🏆 모델 비교 및 최종 선택
 
 <div style="padding: 15px; border: 1px solid #ddd; border-radius: 8px; background-color: #f0f8ff; margin: 20px 0;">
-  <p><b>🔍 최종 추천 모델: YOLO 객체 탐지 모델</b></p>
-  <p>세 가지 모델을 비교 분석한 결과, 출입 관리 시스템에는 YOLO 객체 탐지 모델이 가장 적합하다고 판단됩니다. 그 이유는 다음과 같습니다:</p>
+  <p><b>🔍 최종 추천 시스템: 2단계 얼굴 인식 시스템</b></p>
+  <p>다양한 모델을 비교 분석한 결과, 출입 관리 시스템에는 두 모델을 단계적으로 활용하는 것이 가장 효과적입니다:</p>
   <ul>
-    <li><b>실시간 처리:</b> 가장 빠른 추론 속도로 대기 시간 최소화</li>
-    <li><b>다중 얼굴 동시 인식:</b> 여러 명이 동시에 접근해도 병목 현상 없이 처리 가능</li>
-    <li><b>위치 기반 인식:</b> 프레임 내 얼굴 위치 파악으로 출입구 접근 상황 대응 가능</li>
-    <li><b>모듈화:</b> 출입 관리 외에도 다양한 보안 시스템과 통합 용이</li>
+    <li><b>1단계: YOLO 객체 탐지 모델</b>
+      <ul>
+        <li>실시간으로 여러 얼굴을 동시에 감지하고 본인/타인 구분</li>
+        <li>빠른 추론 속도로 대기 시간 최소화</li>
+        <li>위치 기반 인식으로 출입구 접근 상황 대응 가능</li>
+      </ul>
+    </li>
+    <li><b>2단계: YOLO-cls 분류 모델</b>
+      <ul>
+        <li>1단계에서 '본인'으로 식별된 경우에만 활성화</li>
+        <li>높은 정확도로 개인 신원 확인</li>
+        <li>기록 및 권한 관리에 활용</li>
+      </ul>
+    </li>
   </ul>
-  <p>단, 높은 보안이 요구되는 특수 구역에는 FaceNet 모델의 높은 정확도를 활용한 2단계 인증을 추가로 적용할 수 있습니다.</p>
+  <p>이러한 2단계 시스템은 출입 과정의 효율성과 정확성을 모두 확보할 수 있으며, 특히 대규모 인원의 빠른 출입이 필요한 환경에 적합합니다.</p>
 </div>
 
 <br>
@@ -413,36 +363,29 @@ python Step0_etc_image_save.py
 ### 2. 모델 학습
 각 모델 학습을 위한 Jupyter Notebook 파일:
 ```
-# 본인/타인 구분 YOLO-cls 모델 학습
-Step2_1_Use_YOLO_cls.ipynb
-
-# 조원별(5인) 얼굴 식별 YOLO-cls 모델 학습
-Step2_1_Use_YOLO_cls_5_person.ipynb
-
 # 본인/타인 구분 YOLO 객체 탐지 모델 학습 
 Step3_1_Use_YOLO.ipynb
 
-# 조원별(5인) 얼굴 식별 YOLO 객체 탐지 모델 학습
-Step3_1_Use_YOLO_modified_for_5_classes.ipynb
+# 개인 식별 YOLO-cls 모델 학습
+Step2_1_Use_YOLO_cls.ipynb
 ```
 
 ### 3. 학습된 모델 불러와서 실행하기
 ```python
 # 본인/타인 구분 모델 실행 - YOLO 객체 탐지
 python Step3_2_Detect_YOLO.py
-# 이 파일은 yolo11n-cls.pt 모델을 불러와 사용
+# 이 파일은 yolo11s.pt 모델을 불러와 사용
 
-# 조원별(5인) 얼굴 식별 모델 실행 - YOLO-cls
-python Step3_2_Detect_YOLO_5person.py
-# 이 파일은 5person-yolo11n-cls.pt 모델을 불러와 사용
+# 개인 식별 모델 실행 - YOLO-cls 
+python Step2_2_Detect_YOLO_cls.py
+# 이 파일은 yolo11n-cls.pt 모델을 불러와 사용
 ```
 
 ### 4. 모델별 용도 구분
-- **본인/타인 구분**: `yolo11n-cls.pt` 모델 사용 (Step3_2_Detect_YOLO.py)
-- **조원별 얼굴 식별**: `5person-yolo11n-cls.pt` 모델 사용 (Step3_2_Detect_YOLO_5person.py)
+- **본인/타인 구분**: `yolo11s.pt` 모델 사용 (Step3_2_Detect_YOLO.py)
+- **개인 식별**: `yolo11n-cls.pt` 모델 사용 (Step2_2_Detect_YOLO_cls.py)
 
 <br>
-
 
 ## 🧠 프로젝트 배운 점
 
@@ -510,7 +453,7 @@ python Step3_2_Detect_YOLO_5person.py
       <td rowspan="3">🤖</td>
       <td rowspan="3"><b>딥러닝</b></td>
       <td>TensorFlow, Keras</td>
-      <td>FaceNet 모델 구현 및 학습</td>
+      <td>초기 모델 실험 및 평가</td>
     </tr>
     <tr>
       <td>UltraLytics</td>
