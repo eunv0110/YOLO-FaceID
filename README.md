@@ -92,7 +92,7 @@
 - **특징**: 높은 정확도로 빠르게 본인/타인 구분 가능
 
 <div align="center">
-  <img width="417" alt="본인/타인 얼굴 구분 결과" src="https://github.com/user-attachments/assets/cfb30982-9cfa-464a-9580-17ae8a6b476a" />
+  <img width="600" alt="본인/타인 얼굴 구분 결과" src="https://github.com/user-attachments/assets/cfb30982-9cfa-464a-9580-17ae8a6b476a" />
   <p><i>YOLO 객체 탐지 모델을 활용한 본인/타인 얼굴 구분 결과 - 실시간으로 얼굴을 감지하고 '본인(my)' 또는 '타인(others)'으로 분류합니다</i></p>
 </div>
 
@@ -486,7 +486,6 @@ python Step2_2_Detect_YOLO_cls.py
       <td align="center"><b>윤종진</b></td>
       <td align="center"><b>정요한</b></td>
       <td align="center"><b>황은비</b></td>
-      
     </tr>
   </table>
 </div>
