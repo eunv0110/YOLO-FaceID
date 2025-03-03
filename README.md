@@ -544,7 +544,6 @@ python multi_face_test.py
       <td align="center"><b>윤종진</b></td>
       <td align="center"><b>정요한</b></td>
       <td align="center"><b>황은비</b></td>
-
     </tr>
   </table>
 </div>
