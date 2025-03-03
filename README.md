@@ -1,6 +1,3 @@
-<img width="470" alt="스크린샷 2025-03-04 오전 12 38 01" src="https://github.com/user-attachments/assets/d1633761-a439-4779-be01-0f4c6775356d" />
-<img width="417" alt="스크린샷 2025-03-04 오전 12 38 31" src="https://github.com/user-attachments/assets/cfb30982-9cfa-464a-9580-17ae8a6b476a" />
-
 # 📷 카메라 기반 얼굴 인식 프로젝트
 
 <div align="center">
@@ -29,7 +26,7 @@
 <br>
 
 ## ⏰ 프로젝트 기간
-- 2024년 10월 21일 ~ 2024년 10월 25일 (5일간)
+- 2024년 10월 28일 ~ 2024년 11월 01일 (5일간)
 
 <br>
 
@@ -94,11 +91,21 @@
 - **적용 상황**: 출입구에서 1차 검증으로 활용
 - **특징**: 높은 정확도로 빠르게 본인/타인 구분 가능
 
+<div align="center">
+  <img width="417" alt="본인/타인 얼굴 구분 결과" src="https://github.com/user-attachments/assets/cfb30982-9cfa-464a-9580-17ae8a6b476a" />
+  <p><i>YOLO 객체 탐지 모델을 활용한 본인/타인 얼굴 구분 결과 - 실시간으로 얼굴을 감지하고 '본인(my)' 또는 '타인(others)'으로 분류합니다</i></p>
+</div>
+
 ### 2. 사내 출입 2차 검증: 개인 식별 (UltraLytics YOLO-cls)
 - **목적**: 1차에서 확인된 인가자의 정확한 신원 확인
 - **선택 모델**: `YOLO11n-cls` 
 - **적용 상황**: 개인별 권한 부여 및 출입 기록을 위한 2차 검증
 - **특징**: 개인별 얼굴을 높은 정확도로 분류
+
+<div align="center">
+  <img width="470" alt="조원별 얼굴 식별 결과" src="https://github.com/user-attachments/assets/d1633761-a439-4779-be01-0f4c6775356d" />
+  <p><i>YOLO-cls 모델을 활용한 조원 5명의 얼굴 식별 결과 - 각 개인을 고유 ID로 정확하게 구분합니다</i></p>
+</div>
 
 ### 3. 두 모델의 사용 목적
 - **UltraLytics YOLO**: 얼굴 검출 및 본인/타인 구분 수행
@@ -473,9 +480,13 @@ python Step2_2_Detect_YOLO_cls.py
 <div align="center">
   <table>
     <tr>
-      <td align="center"><b>개발팀</b></td>
-      <td align="center"><b>연구팀</b></td>
-      <td align="center"><b>테스트팀</b></td>
+      <td align="center"><b>김수란</b></td>
+      <td align="center"><b>김예은</b></td>
+      <td align="center"><b>김태헌</b></td>
+      <td align="center"><b>윤종진</b></td>
+      <td align="center"><b>정요한</b></td>
+      <td align="center"><b>황은비</b></td>
+      
     </tr>
   </table>
 </div>
