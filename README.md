@@ -84,20 +84,23 @@
   <img width="800" alt="프로젝트 접근 방식 개요" src="https://path-to-your-image/project_overview.png">
 </div>
 
-본 프로젝트에서는 다음 세 가지 접근 방식을 병렬적으로 구현하고 비교했습니다:
+본 프로젝트는 얼굴 인식을 위한 계층적 접근 방식을 채택했습니다:
 
-### 1. UltraLytics YOLO 객체 탐지
-- **목적**: 본인 얼굴과 타인 얼굴 탐지
-- **데이터 구성**: my_face와 other_face로 분류
-- **특징**: 실시간으로 여러 얼굴을 동시에 감지하고 분류
+### 1. 1단계: 본인/타인 얼굴 구분 (UltraLytics YOLO)
+- **목적**: 얼굴이 본인(인가된 사용자)인지 타인인지 구분
+- **데이터 구성**: my_face와 other_face로 이진 분류
+- **특징**: 출입 권한 부여를 위한 첫 단계 인증 시스템
 
-### 2. UltraLytics YOLO-cls 분류
-- **목적**: 각 팀원의 얼굴 사진 분류
-- **데이터 구성**: face1, face2, face3, face4, face5로 분류
-- **특징**: 각 팀원의 얼굴에 맞게 모델이 분류하는 것을 확인
+### 2. 2단계: 개인별 얼굴 식별 (UltraLytics YOLO-cls)
+- **목적**: 6명의 조원 중 누구인지 정확히 식별
+- **데이터 구성**: 조원 6명의 데이터를 각각의 클래스로 분류
+- **특징**: 인가된 사용자들 간의 세부 식별 시스템
 
-### 3. 데이터 흐름
-- **데이터 수집** → **데이터 전처리** → **모델 학습** → **성능 평가**
+### 3. 데이터 처리 과정
+1. **데이터 수집**: 각 조원별 얼굴 이미지 수집
+2. **데이터 증강**: Annotation 및 Augmentation 기법 적용
+3. **모델 학습**: 각 단계별 모델 구축 및 학습
+4. **성능 평가**: 실시간 웹캠 테스트를 통한 성능 검증
 
 
 
@@ -305,28 +308,131 @@
 
 <br>
 
-## 💡 실제 활용 시나리오
+## 🚀 프로젝트 실행 방법
 
-<div style="display: flex; justify-content: space-between;">
-  <div style="width: 48%; padding: 15px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9;">
-    <h3>🏢 사내 출입 관리</h3>
-    <ul>
-      <li><b>실시간 출입 인증:</b> 카메라에 얼굴이 인식되면 자동으로 출입문 개방</li>
-      <li><b>다중 인원 처리:</b> 여러 명이 동시에 접근해도 개별 인증 가능</li>
-      <li><b>출퇴근 기록:</b> 자동 출퇴근 기록 및 근태 관리 시스템 연동</li>
-      <li><b>보안 강화:</b> 비인가자 접근 시 알림 및 기록</li>
-    </ul>
-  </div>
-  <div style="width: 48%; padding: 15px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9;">
-    <h3>🔒 추가 보안 응용</h3>
-    <ul>
-      <li><b>주요 구역 접근 관리:</b> 보안 수준별 접근 권한 차등 적용</li>
-      <li><b>방문자 관리:</b> 방문자 등록 및 임시 출입 허가 자동화</li>
-      <li><b>이상 행동 감지:</b> 특정 구역의 무단 접근 시도 감지</li>
-      <li><b>재실 현황 파악:</b> 현재 건물 내 인원 실시간 파악</li>
-    </ul>
-  </div>
-</div>
+### 1. 환경 설정
+```bash
+# 1. 프로젝트 폴더 생성 및 이동
+cd Desktop
+mkdir project4
+cd project4
+
+# 2. 가상환경 생성 및 활성화
+python -m venv proj4
+cd proj4/Scripts
+activate
+
+# 3. 필요 라이브러리 설치
+pip install -r requirements.txt
+```
+
+### 2. 모델 실행 (로컬 환경)
+
+#### FaceNet 모델 실행
+```python
+# 저장된 모델 로드
+python Step1_2_Detect_Keras_aivler.py
+```
+
+#### YOLO-cls 모델 실행
+```python
+# 저장된 모델 로드
+python Step2_2_Detect_YOLOcls_aivler.py
+```
+
+#### YOLO 객체 탐지 모델 실행
+```python
+# 저장된 모델 로드
+python Step3_2_Detect_YOLO_aivler.py
+```
+
+### 3. 멀티 얼굴 인식 테스트
+```python
+# 다중 얼굴 인식 테스트
+python multi_face_test.py
+```
+
+## 📋 일별 미션 수행 과정
+
+<table>
+  <tr>
+    <th width="20%">날짜</th>
+    <th width="80%">미션 내용 및 수행 결과</th>
+  </tr>
+  <tr>
+    <td><b>1일차</b></td>
+    <td>
+      <ul>
+        <li><b>FaceNet 모델 구현</b>
+          <ul>
+            <li>STEP 1: 본인/타인 얼굴 이미지 데이터셋 수집 및 로드</li>
+            <li>STEP 2: 데이터 전처리 및 FaceNet 모델 구조 생성 (160×160 입력, 128차원 출력)</li>
+            <li>STEP 3: 다양한 모델 실험, 모델 저장(.keras), 로컬 환경 웹캠 테스트</li>
+          </ul>
+        </li>
+        <li>이슈 및 해결: 데이터 불균형 문제 → 데이터 증강 및 클래스 가중치 적용</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td><b>2일차</b></td>
+    <td>
+      <ul>
+        <li><b>YOLO-cls 모델 구현</b>
+          <ul>
+            <li>STEP 1-2: 데이터셋 로드 및 YOLO-cls 요구 폴더 구조로 전처리</li>
+            <li>STEP 3: UltraLytics YOLO-cls 모델 선택 및 학습, 추론, 모델 저장(.pt), 로컬 테스트</li>
+          </ul>
+        </li>
+        <li>이슈 및 해결: 모델 크기와 성능 균형 → YOLOv8n-cls 선택으로 속도와 정확도 최적화</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td><b>3일차</b></td>
+    <td>
+      <ul>
+        <li><b>Annotation 작업</b>
+          <ul>
+            <li>STEP 1: 본인 얼굴 이미지 수집 및 Annotation 작업 (Roboflow 활용)</li>
+            <li>데이터 증강(Augmentation) 작업을 통한 데이터셋 확장</li>
+          </ul>
+        </li>
+        <li>이슈 및 해결: Annotation 작업의 정확성 → 온라인 도구 활용으로 효율성 증대</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td><b>4일차</b></td>
+    <td>
+      <ul>
+        <li><b>YOLO 객체 탐지 모델 구현</b>
+          <ul>
+            <li>STEP 2: 데이터셋 로드 및 YOLO 요구 구조로 전처리, YAML 파일 생성</li>
+            <li>STEP 3: UltraLytics YOLO 모델 선택, 학습, 추론, 모델 저장, 로컬 테스트</li>
+          </ul>
+        </li>
+        <li>이슈 및 해결: 다중 얼굴 동시 인식 → 적절한 IoU 임계값 조정으로 개선</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td><b>5일차</b></td>
+    <td>
+      <ul>
+        <li><b>모델 최적화 및 비교 분석</b>
+          <ul>
+            <li>세 가지 모델(Keras, YOLO-cls, YOLO) 모두 하이퍼파라미터 튜닝으로 개선</li>
+            <li>로컬 웹캠에서 실제 성능 테스트 및 지표화</li>
+            <li>다중 인원 동시 인식 상황에서 각 모델별 성능 차이 분석</li>
+            <li>결과 정리 및 발표 자료 준비</li>
+          </ul>
+        </li>
+        <li>최종 결론: YOLO 객체 탐지 모델이 실시간 다중 얼굴 인식에 가장 적합</li>
+      </ul>
+    </td>
+  </tr>
+</table>
 
 <br>
 
@@ -432,9 +538,13 @@
 <div align="center">
   <table>
     <tr>
-      <td align="center"><b>개발팀</b></td>
-      <td align="center"><b>연구팀</b></td>
-      <td align="center"><b>테스트팀</b></td>
+      <td align="center"><b>김수란</b></td>
+      <td align="center"><b>김예은</b></td>
+      <td align="center"><b>김태헌</b></td>
+      <td align="center"><b>윤종진</b></td>
+      <td align="center"><b>정요한</b></td>
+      <td align="center"><b>황은비</b></td>
+
     </tr>
   </table>
 </div>
