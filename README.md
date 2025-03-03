@@ -1,6 +1,8 @@
 # 📷 카메라 기반 얼굴 인식 프로젝트
 
 <div align="center">
+  <img width="600" src="https://github.com/user-attachments/assets/99b9375c-df85-456c-bb77-565a5415b31a" />
+
   <br>
   <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" />
   <img src="https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white" />
