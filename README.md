@@ -48,6 +48,53 @@
 
 <br>
 
+## 🛠️ 기술 스택
+
+<div align="center">
+  <table>
+    <tr>
+      <th colspan="2" align="center">분류</th>
+      <th align="center">기술</th>
+      <th align="center">용도</th>
+    </tr>
+    <tr>
+      <td rowspan="4" width="10%">💻</td>
+      <td width="20%"><b>언어</b></td>
+      <td width="25%">Python</td>
+      <td width="45%">전체 프로젝트 개발</td>
+    </tr>
+    <tr>
+      <td rowspan="2"><b>데이터 처리</b></td>
+      <td>OpenCV</td>
+      <td>이미지 처리 및 얼굴 검출</td>
+    </tr>
+    <tr>
+      <td>NumPy</td>
+      <td>수치 연산 및 배열 처리</td>
+    </tr>
+    <tr>
+      <td><b>개발 환경</b></td>
+      <td>Google Colab, VSCode</td>
+      <td>모델 개발 및 로컬 구현</td>
+    </tr>
+    <tr>
+      <td rowspan="3">🤖</td>
+      <td rowspan="3"><b>딥러닝</b></td>
+      <td>TensorFlow, Keras</td>
+      <td>초기 모델 실험 및 평가</td>
+    </tr>
+    <tr>
+      <td>UltraLytics</td>
+      <td>YOLO-cls 및 YOLO 객체 탐지 모델 구현</td>
+    </tr>
+    <tr>
+      <td>Roboflow</td>
+      <td>데이터 Annotation 및 증강</td>
+    </tr>
+  </table>
+</div>
+
+<br>
 ## 📊 데이터셋 소개
 
 <table>
@@ -418,54 +465,6 @@ python Step2_2_Detect_YOLO_cls.py
     <tr>
       <td align="center">⚙️<br><b>로컬 환경 구축</b></td>
       <td>Colab에서 학습한 모델을 로컬 환경에서 실행하기 위한 환경 구축 및 최적화 경험</td>
-    </tr>
-  </table>
-</div>
-
-<br>
-
-## 🛠️ 기술 스택
-
-<div align="center">
-  <table>
-    <tr>
-      <th colspan="2" align="center">분류</th>
-      <th align="center">기술</th>
-      <th align="center">용도</th>
-    </tr>
-    <tr>
-      <td rowspan="4" width="10%">💻</td>
-      <td width="20%"><b>언어</b></td>
-      <td width="25%">Python</td>
-      <td width="45%">전체 프로젝트 개발</td>
-    </tr>
-    <tr>
-      <td rowspan="2"><b>데이터 처리</b></td>
-      <td>OpenCV</td>
-      <td>이미지 처리 및 얼굴 검출</td>
-    </tr>
-    <tr>
-      <td>NumPy</td>
-      <td>수치 연산 및 배열 처리</td>
-    </tr>
-    <tr>
-      <td><b>개발 환경</b></td>
-      <td>Google Colab, VSCode</td>
-      <td>모델 개발 및 로컬 구현</td>
-    </tr>
-    <tr>
-      <td rowspan="3">🤖</td>
-      <td rowspan="3"><b>딥러닝</b></td>
-      <td>TensorFlow, Keras</td>
-      <td>초기 모델 실험 및 평가</td>
-    </tr>
-    <tr>
-      <td>UltraLytics</td>
-      <td>YOLO-cls 및 YOLO 객체 탐지 모델 구현</td>
-    </tr>
-    <tr>
-      <td>Roboflow</td>
-      <td>데이터 Annotation 및 증강</td>
     </tr>
   </table>
 </div>
