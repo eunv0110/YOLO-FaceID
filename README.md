@@ -10,7 +10,6 @@
   <img src="https://img.shields.io/badge/OpenCV-5C3EE8?style=for-the-badge&logo=opencv&logoColor=white" />
   <img src="https://img.shields.io/badge/YOLOv8-00FFFF?style=for-the-badge&logo=yolo&logoColor=black" />
   <br><br>
-  <p><i>KT AIVLE School AI 트랙 미니프로젝트 4차</i></p>
 </div>
 
 <br>
@@ -80,10 +79,6 @@
 <br>
 
 ## 📊 프로젝트 구조 및 모델 접근 방식
-
-<div align="center">
-  <img width="800" alt="프로젝트 접근 방식 개요" src="https://path-to-your-image/project_overview.png">
-</div>
 
 본 프로젝트는 사내 출입 관리를 위한 두 단계의 얼굴 인식 시스템을 구현했습니다:
 
@@ -494,9 +489,3 @@ python Step2_2_Detect_YOLO_cls.py
 
 <br>
 
----
-
-<div align="center">
-  <p>본 프로젝트는 KT AIVLE School AI 트랙 미니프로젝트 4차로 진행되었습니다.</p>
-  <p>© 2025 KT AIVLE School 6기 AI 트랙 미니프로젝트</p>
-</div>
