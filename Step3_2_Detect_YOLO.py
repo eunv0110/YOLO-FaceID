@@ -5,14 +5,7 @@ from ultralytics import YOLO
 
 ###############################################
 ## 모델 불러오기
-# model = YOLO('C:/Users/User/Downloads/yolo11s-face-ep10-imgsz640-best.pt')# 실패
-# model = YOLO('C:/Users/User/Downloads/yolo11s-face-ep10-imgsz640.pt') 실패
-# model = YOLO('C:/Users/User/Downloads/yolo11s-face-ep10-imgsz180x4.pt')# 반반
-# model = YOLO('C:/Users/User/Downloads/yolo11s-face-ep10-imgsz180x4-best.pt')# 실패
 model = YOLO('C:/Users/User/Downloads/yolo11s-face.pt')
-# model = YOLO('C:/Users/User/Downloads/yolo11s-face-ep5.pt') 실패
-# model = YOLO('C:/Users/User/Downloads/yolo11s-face-best.pt') 실패
-# model = YOLO('C:/Users/User/Downloads/yolo11n-face-v2.pt') 실패
 
 ###############################################
 
